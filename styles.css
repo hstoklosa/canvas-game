@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+canvas {
+    position: relative;
+}
+
+.points {
+    position: absolute;
+    z-index: 999;
+    color: #fff;
+    margin: 1rem;
+}
+
+.on .menu {
+    display: none;
+}
+
+.menu {
+    position: absolute;
+    z-index: 999;
+    background-color: rgba(0, 0, 0);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu .container {
+    position: absolute;
+    z-index: 999;
+    border: 1px solid lightgreen;
+    border-radius: .5rem;
+    width: 30%;
+    min-width: 430px;
+    height: 25%;
+    margin: 1rem;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.menu .flex {
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.choices {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.start-btn {
+    border: 1px solid #000;
+    border-radius: .2rem;
+    padding: .5rem 1rem;
+    transition: all .2s linear;
+}
+
+.start-btn:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.10);
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" type="text/css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="points">Points: <span id="points"></span></h1>
+    <div class="menu">
+        <div class="container flex">
+            <h1>Menu</h1>
+            <div class="choices">
+                <div>
+                    <input type="radio" name="difficulty" id="easy" value="easy">
+                    <label for="easy">Easy</label>
+                </div>
+                <div>
+                    <input type="radio" name="difficulty" id="intermediate" value="intermediate">
+                    <label for="intermediate">Intermediate</label>
+                </div>
+                <div>
+                    <input type="radio" name="difficulty" id="hard" value="hard">
+                    <label for="hard">Hard</label>
+                </div>
+                <div>
+                    <input type="radio" name="difficulty" id="extreme" value="extreme">
+                    <label for="extreme">Extreme</label>
+                </div>
+            </div>
+            <button class="start-btn" id="start">Start</button>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script src="./app.js" type="module"></script>
+</body>
+
+</html>
