@@ -9,7 +9,7 @@ const difficulties = {
 
 let difficulty;
 
-export const setDifficulty = (updateCanvas) => {
+export const setDifficulty = () => {
     const difficultyInputs = document.getElementsByName('difficulty');
 
     difficultyInputs.forEach(input => {
@@ -17,8 +17,7 @@ export const setDifficulty = (updateCanvas) => {
             difficulty = difficulties[input.value];
         }
     });
-    document.body.classList.add('on');
 
+    document.body.classList.add('on');
     setInterval(() => spawnEnemies(), difficulty);
-    updateCanvas();
 }
