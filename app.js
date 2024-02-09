@@ -6,11 +6,9 @@ import { handlePoints } from './modules/points.js'
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-
 const startButton = document.getElementById('start');
 
 // Canvas
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -19,8 +17,7 @@ const setCanvasSize = () => {
     canvas.height = window.innerHeight;
 }
 
-//  Game
-
+// Game
 const middle = {
     x: canvas.width / 2,
     y: canvas.height / 2
@@ -28,11 +25,11 @@ const middle = {
 
 const player = new Player(middle.x, middle.y, 30, 'white');
 
-
+let gameStarted = false;
 let animationFrame;
 const updateCanvas = () => {
     animationFrame = requestAnimationFrame(updateCanvas);
-    console.log(projectiles);
+
     // Leaving blurred trails behind
     ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -55,21 +52,18 @@ const updateCanvas = () => {
     enemies.forEach((enemy, enemyIndex) => {
         enemy.update();
 
-        // Enemy touching player
+        // Player & enemy collision
         const distance = Math.hypot(enemy.x - player.x, enemy.y - player.y);
-
         if (distance - player.radius - enemy.radius < 1) {
 
-            // Removes flashing as animation tries to draw next frame!
+            // Removes flashing as animation tries to draw next frame
             setTimeout(() => {
                 enemies.splice(enemyIndex, 1);
                 cancelAnimationFrame(animationFrame);
             }, 0);
-
         }
 
-        // Projectiles touching enemy
-
+        // Projectile & enemy enemy collision
         projectiles.forEach((projectile, projectileIndex) => {
             const distance = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y);
 
@@ -81,16 +75,29 @@ const updateCanvas = () => {
                     enemies.splice(enemyIndex, 1);
                     projectiles.splice(projectileIndex, 1);
                 }, 0);
-
             }
         });
     });
 }
 
+
+
 // Event Listeners
+startButton.addEventListener('click', (e) => {
+    setDifficulty();
+    updateCanvas();
+    gameStarted = true;
+    e.stopPropagation();
+});
 
-startButton.addEventListener('click', () => setDifficulty(updateCanvas))
+window.addEventListener('click', (e) => {
+    if (gameStarted) {
+        shootProjectile(e, middle.y, middle.x);
+    }
+});
 
-window.addEventListener('click', (e) => shootProjectile(e, middle.y, middle.x));
-
-window.addEventListener('resize', () => setCanvasSize());
+window.addEventListener('resize', () => {
+    if (gameStarted) {
+        setCanvasSize();
+    }
+});
